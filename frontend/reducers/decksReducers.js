@@ -4,7 +4,7 @@ import {
   CREATE_DECK_RESPONSE,
   REQUEST_DECKS, 
   RECEIVE_DECKS
-} from '../actions/index'
+} from '../actions/decksActions'
 
 export default function decks (
   state = {
