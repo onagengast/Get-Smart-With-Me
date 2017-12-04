@@ -1,0 +1,29 @@
+state: {
+  userId: string, 
+  selectedDeck: string, 
+  cards {
+    byId: {
+      id: {
+        id: num, 
+        front: string, 
+        back: string
+      }
+    }, 
+    allIds: array
+  }, 
+  decks: {
+    isUpdating: bool
+    byId: {
+      id: {
+        id: num, 
+        isFetching: bool, 
+        allCards: array, 
+        pile1: array, 
+        pile2: array, 
+        pile3: array, 
+        pile4: array
+      }, 
+      allIds: array
+    }
+  }
+}
