@@ -1,5 +1,9 @@
+// This is what my state looks like
+
 state: {
   userId: string, 
+  username: string,
+  isFetching: bool
   selectedDeck: string, 
   cards {
     byId: {
