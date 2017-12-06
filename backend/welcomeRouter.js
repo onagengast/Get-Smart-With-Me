@@ -1,29 +1,32 @@
-var express = require('express')
+var express = require('express');
 var router = express.Router();
 var passport = require('passport');
 var LocalStrategy = require('passport-local').Strategy;
+// var models = require('./models');
 var User = require('./models').User;
 
-console.log(User);
-
 router.get('/', (req, res) => {
-  if (req.user) { 
-    router.post('/login', (req, res) => {
-      // go to server 
-    })
-  } else {
-    console.log('made it here');
-    res.json('No user credentials provided');
-  }
-})
+  res.end();
+});
 
 router.get('/home', (req, res) => {
-  res.send('Make it home!')
-})
+  res.send('Make it home!');
+});
 
 router.post('/registration', (req, res) => {
-  res.send('got it!');
-})
+  var newUser = new User({
+    username: req.body.username,
+    password: req.body.password
+  });
+  newUser.save(function(err, user) {
+    if (err) {
+      res.end('Error!');
+      console.log(err);
+    } else {
+      res.send('Succesfully created a user!');
+    }
+  });
+});
 
-module.exports = router; 
+module.exports = router;
 
