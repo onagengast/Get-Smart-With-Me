@@ -35,9 +35,9 @@ function requestDecks(userId) {
 
 export const RECEIVE_DECKS = 'RECEIVE_DECKS'
 function receiveDecks(json) {
-  type: RECEIVE_DECKS, 
+  type: RECEIVE_DECKS 
   // Modify what I pass to decks according to how I get them from the DB 
-  decks: json.data.children.map(child => child.data)
+  // decks: json.data.children.map(child => child.data)
 }
 
 export function fetchDecks(userId) {
