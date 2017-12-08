@@ -41,4 +41,5 @@ Build plan:
 3. Baseline functionality achieved: test, fix, and iterate 
 4. Style front-end components 
 5. Add functionality 
+  
   Some ideas: stats on indiviudal sessions to track progress, make decks sharable between users, add animations 
