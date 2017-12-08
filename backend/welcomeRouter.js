@@ -42,10 +42,6 @@ router.post('/login', passport.authenticate('local', {
   passReqToCallBack: true
 }));
 
-router.get('/home', (req, res) => {
-  res.send('Make it home!');
-});
-
 router.post('/registration', (req, res) => {
   var newUser = new User({
     username: req.body.username,

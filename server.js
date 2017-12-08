@@ -11,6 +11,7 @@ const session = require('express-session');
 
 const api = require('./backend/routes');
 const welcome = require('./backend/welcomeRouter');
+const home = require('./backend/homeRouter');
 
 const PORT = process.env.PORT || 3000;
 
@@ -23,6 +24,7 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 app.use('/', welcome);
+app.use('/', home);
 
 app.get('/*', (request, response) => {
   response.sendFile(__dirname + '/public/index.html'); // For React/Redux
