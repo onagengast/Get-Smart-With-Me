@@ -16,24 +16,25 @@ Technical stack: React, Redux, Express, PassportJS, and MongoDB
 Build plan: 
 1. Construct backend and server
 
-        a. Make a login/registration router (which I call "welcome") 
-  
-        b. Configure PassportJS to handle authentication
-    
-        b. Make a home page router (which I call "home") 
-  
-        c. Make deck router 
-    
-        d. Make study session router 
+    a. Make a login/registration router (which I call "welcome") 
+
+    b. Configure PassportJS to handle authentication
+
+    b. Make a home page router (which I call "home") 
+
+    c. Make deck router 
+
+    d. Make study session router 
   
 2. Construct frontend 
-        a. Create actions, action creators, and reducers
-        
-        b. Connect this to the backend 
-        
-        c. Create presentational components 
-        
-        d. Create container components 
+    a. Create actions, action creators, and reducers
+
+    b. Connect this to the backend 
+
+    c. Create presentational components 
+
+    d. Create container components
+    
 3. Baseline functionality achieved: test, fix, and iterate 
 4. Style front-end components 
 5. Add functionality 
