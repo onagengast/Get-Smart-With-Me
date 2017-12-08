@@ -1,5 +1,5 @@
-# Get-Smart-With-Me
-Digital flashcards
+# Get Smart With Me
+Digital Flashcards
 
 When I study flashcards, I have four piles: 
 1. Cards that I haven't viewed yet 
