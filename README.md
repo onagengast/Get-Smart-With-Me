@@ -1,6 +1,8 @@
 # Get Smart With Me
 Digital Flashcards
 
+Technical stack: React, Redux, Express, PassportJS, and MongoDB 
+
 When I study flashcards, I have four piles: 
 1. Cards that I haven't viewed yet 
 2. Cards that I nailed 
@@ -11,7 +13,7 @@ After each round, I collect piles 3 ("so-so" cards) and 4 ("totally off" cards) 
 
 This app enables users to study flashcards using this method. I've long relied on this method to study flashcards, and it has served me well. 
 
-Technical stack: React, Redux, Express, PassportJS, and MongoDB 
+
 
 Build plan: 
 1. Construct backend and server
@@ -26,7 +28,8 @@ Build plan:
 
     d. Make study session router 
   
-2. Construct frontend 
+2. Construct frontend
+
     a. Create actions, action creators, and reducers
 
     b. Connect this to the backend 
