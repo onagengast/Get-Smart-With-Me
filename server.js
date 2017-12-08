@@ -21,6 +21,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({secret: 'otto loves his mom'}));
 app.use(passport.initialize());
 app.use(passport.session());
+
 app.use('/', welcome);
 
 app.get('/*', (request, response) => {
