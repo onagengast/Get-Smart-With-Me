@@ -9,7 +9,7 @@ When I study flashcards, I have four piles:
 
 After each round, I collect piles 3 ("so-so" cards) and 4 ("totally off" cards) and work through this new stack. I repeat this until all cards make it to pile 2 ("nailed it" pile). 
 
-This app enables users to study flashcards using this method. I created this app because I couldn't find any app that enabled me to use this method. 
+This app enables users to study flashcards using this method. I've long relied on this method to study flashcards, and it has served me well. 
 
 Technical stack: React, Redux, Express, PassportJS, and MongoDB 
 
