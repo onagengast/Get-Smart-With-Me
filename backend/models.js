@@ -12,25 +12,15 @@ var userSchema = mongoose.Schema({
     required: true
   },
   decks: {
-    type: [],
+    type: [{
+      type: Schema.Types.ObjectId,
+      ref: 'Decks'
+    }],
     default: []
   }
 });
 
 const User = mongoose.model('Users', userSchema);
-
-var cardSchema = mongoose.Schema({
-  front: {
-    type: String,
-    default: ''
-  },
-  back: {
-    type: String,
-    default: ''
-  }
-});
-
-const Card = mongoose.model('Cards', cardSchema);
 
 var deckSchema = mongoose.Schema({
   name: {
@@ -57,6 +47,19 @@ var deckSchema = mongoose.Schema({
 });
 
 const Deck = mongoose.model('Decks', deckSchema);
+
+var cardSchema = mongoose.Schema({
+  front: {
+    type: String,
+    default: ''
+  },
+  back: {
+    type: String,
+    default: ''
+  }
+});
+
+const Card = mongoose.model('Cards', cardSchema);
 
 module.exports = {
   User: User,

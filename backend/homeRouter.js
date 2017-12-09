@@ -1,11 +1,21 @@
 var express = require('express');
 var router = express.Router();
-var models = require('./models');
-var Deck = models.Deck;
-var Card = models.Card;
+const models = require('./models');
+const Deck = models.Deck;
+const Card = models.Card;
+const User = models.User;
 
 router.get('/home', (req, res) => {
-  res.send(req.user);
+  User.findById(req.user.id)
+  .populate('decks', 'name description')
+  .exec((err, user) => {
+    if (err) {
+      console.log('Error! : ', err);
+      res.send(err);
+    } else {
+      res.send(user);
+    }
+  });
 });
 
 router.get('/deckView', (req, res) => {
@@ -45,19 +55,47 @@ router.post('/saveSession', (req, res) => {
 });
 
 router.post('/newDeck', (req, res) => {
+  const userId = req.query.userId;
+  console.log(userId);
   const name = req.query.name;
   const description = req.query.description;
+  let deckId = null;
 
   var newDeck = new Deck({name: name, description: description});
-  newDeck.save(function(err, deck) {
-    if (err) {
-      console.log('Error! : ', err);
-      res.send('Error! on trying to save the new deck to the DB');
-    } else {
-      res.send(deck);
-    }
+  newDeck.save()
+  .then(deck => {
+    deckId = deck.id;
+    return;
+  })
+  .then(() => User.findById(userId))
+  .then(user => {
+    console.log(user);
+    user.decks.push(deckId);
+    return user;
+  })
+  .then(user => user.save())
+  .then(user => res.send(user))
+  .catch(err => {
+    console.log('Error! : ', err);
+    res.send(err);
   });
 });
+
+router.post('/deleteDeck', (req, res) => {
+  const id = req.query.deckId;
+  Deck.findByIdAndRemove(id)
+  .then(deck => {
+    Card.remove({id: {$in: deck.contents}});
+  })
+  .then(() => {
+    res.redirect('/home');
+  })
+  .catch(err => {
+    console.log('Error! : ', err);
+    res.send(err);
+  });
+});
+
 
 router.post('/editDeckInfo', (req, res) => {
   const id = req.query.deckId;
@@ -76,12 +114,12 @@ router.post('/editDeckInfo', (req, res) => {
 
 router.post('/editDeckContents', (req, res) => {
   const deckId = req.query.deckId;
-  const cardId = req.query.cardId;
+  const newContents = req.body.contents;
+  const deletedCards = req.body.deletedCards;
 
-  Deck.findById(deckId)
+  Card.remove({id: {$in: deletedCards}})
+  .then(() => Deck.findById(deckId))
   .then(deck => {
-    const index = deck.contents.indexOf(cardId);
-    const newContents = [...deck.contents.slice(0, index), ...deck.contents.slice(index + 1)];
     deck.contents = newContents;
     return deck;
   })
