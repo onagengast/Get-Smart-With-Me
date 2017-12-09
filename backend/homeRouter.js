@@ -6,16 +6,18 @@ const Card = models.Card;
 const User = models.User;
 
 router.get('/home', (req, res) => {
-  User.findById(req.user.id)
-  .populate('decks', 'name description')
-  .exec((err, user) => {
-    if (err) {
-      console.log('Error! : ', err);
-      res.send(err);
-    } else {
-      res.send(user);
-    }
-  });
+  // The line below is just a placeholder.
+  res.send('made it home!');
+  // User.findById(req.user.id);
+  // .populate('decks', 'name description')
+  // .exec((err, user) => {
+  //   if (err) {
+  //     console.log('Error! : ', err);
+  //     res.send(err);
+  //   } else {
+  //     res.send(user);
+  //   }
+  // });
 });
 
 router.get('/deckView', (req, res) => {
@@ -27,7 +29,6 @@ router.get('/deckView', (req, res) => {
       console.log('Error! : ', err);
       res.send(err);
     } else {
-      console.log(deck);
       res.send(deck);
     }
   });
@@ -54,9 +55,8 @@ router.post('/saveSession', (req, res) => {
   });
 });
 
-router.post('/newDeck', (req, res) => {
+router.post('/createNewDeck', (req, res) => {
   const userId = req.query.userId;
-  console.log(userId);
   const name = req.query.name;
   const description = req.query.description;
   let deckId = null;
@@ -69,11 +69,9 @@ router.post('/newDeck', (req, res) => {
   })
   .then(() => User.findById(userId))
   .then(user => {
-    console.log(user);
     user.decks.push(deckId);
-    return user;
+    return user.save();
   })
-  .then(user => user.save())
   .then(user => res.send(user))
   .catch(err => {
     console.log('Error! : ', err);
@@ -81,11 +79,19 @@ router.post('/newDeck', (req, res) => {
   });
 });
 
-router.post('/deleteDeck', (req, res) => {
-  const id = req.query.deckId;
-  Deck.findByIdAndRemove(id)
+router.delete('/deleteDeck', (req, res) => {
+  const userId = req.query.userId;
+  const deckId = req.query.deckId;
+  Deck.findByIdAndRemove(deckId)
   .then(deck => {
-    Card.remove({id: {$in: deck.contents}});
+    // Still need to figure out how to delete the cards too. I can't get it to work.
+    return Card.deleteMany({_id: {$in: deck.contents}});
+  })
+  .then(() => User.findById(userId))
+  .then(user => {
+    const index = user.decks.indexOf(deckId);
+    user.decks = [...user.decks.slice(0, index), ...user.decks.slice(index + 1)];
+    user.save();
   })
   .then(() => {
     res.redirect('/home');
@@ -95,7 +101,6 @@ router.post('/deleteDeck', (req, res) => {
     res.send(err);
   });
 });
-
 
 router.post('/editDeckInfo', (req, res) => {
   const id = req.query.deckId;
@@ -151,7 +156,6 @@ router.post('/createNewCard', (req, res) => {
     return Deck.findById(deckId);
   })
   .then(function(deck) {
-    console.log(deck);
     const updatedCards = deck.contents.concat(cardId);
     deck.contents = updatedCards;
     return deck.save();
