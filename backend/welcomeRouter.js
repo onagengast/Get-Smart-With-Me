@@ -49,7 +49,7 @@ router.post('/registration', (req, res) => {
   });
   newUser.save(function(err, user) {
     if (err) {
-      res.end('Error!');
+      res.send('Error!');
       console.log(err);
     } else {
       res.send('Succesfully created a user!');
