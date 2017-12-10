@@ -10,8 +10,8 @@ import registration from './registrationReducers';
 // }
 
 const rootReducer = combineReducers({
-    decks,
-    registration
+  decks,
+  registration
 });
 
 export default rootReducer;

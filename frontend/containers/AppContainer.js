@@ -1,32 +1,32 @@
-import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
-import Title from '../components/Title';
+import RegisterContainer from './RegisterContainer';
 
-const AppContainer = ({ name }) => {
-    return (
-        <div>
-            <Title name={name} />
-        </div>
-    );
+const AppContainer = () => {
+  return (
+    <div>
+      <RegisterContainer />
+    </div>
+  );
 };
 
-AppContainer.propTypes = {
-    name: PropTypes.string,
-};
+export default AppContainer;
 
-const mapStateToProps = (state) => {
-    return {
-        name: state.name
-    };
-};
+// AppContainer.propTypes = {
+//     name: PropTypes.string,
+// };
 
-const mapDispatchToProps = (/* dispatch */) => {
-    return {
-    };
-};
+// const mapStateToProps = (state) => {
+//     return {
+//         name: state.name
+//     };
+// };
 
-export default connect(
-    mapStateToProps,
-    mapDispatchToProps
-)(AppContainer);
+// const mapDispatchToProps = (/* dispatch */) => {
+//   return {
+//     };
+// };
+
+// export default connect(
+//     mapStateToProps,
+//     mapDispatchToProps
+// )(AppContainer);

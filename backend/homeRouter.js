@@ -6,18 +6,17 @@ const Card = models.Card;
 const User = models.User;
 
 router.get('/home', (req, res) => {
-  // The line below is just a placeholder.
-  res.send('made it home!');
-  // User.findById(req.user.id);
-  // .populate('decks', 'name description')
-  // .exec((err, user) => {
-  //   if (err) {
-  //     console.log('Error! : ', err);
-  //     res.send(err);
-  //   } else {
-  //     res.send(user);
-  //   }
-  // });
+  // Change the findByID method to use req.user.id
+  User.findById(req.query.id)
+  .populate('decks', 'name description')
+  .exec((err, user) => {
+    if (err) {
+      console.log('Error! : ', err);
+      res.send(err);
+    } else {
+      res.send(user);
+    }
+  });
 });
 
 router.get('/deckView', (req, res) => {

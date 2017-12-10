@@ -3,18 +3,8 @@
 state: {
   userId: string, 
   username: string,
-  isFetching: bool
-  selectedDeck: string, 
-  cards {
-    byId: {
-      id: {
-        id: num, 
-        front: string, 
-        back: string
-      }
-    }, 
-    allIds: array
-  }, 
+  isFetching: bool,
+  selectedDeck: string,  
   decks: {
     isUpdating: bool
     byId: {
@@ -31,3 +21,15 @@ state: {
     }
   }
 }
+
+// Extra (unneeded?) stuff 
+cards: {
+    byId: {
+      id: {
+        id: num, 
+        front: string, 
+        back: string
+      }
+    }, 
+    allIds: array
+  },

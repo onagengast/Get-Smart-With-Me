@@ -49,10 +49,10 @@ router.post('/registration', (req, res) => {
   });
   newUser.save(function(err, user) {
     if (err) {
-      res.send('Error!');
       console.log(err);
+      res.send(err);
     } else {
-      res.send('Succesfully created a user!');
+      res.send(user);
     }
   });
 });
