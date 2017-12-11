@@ -1,4 +1,5 @@
 import axios from 'axios';
+import history from '../../history';
 
 export const REGISTRATION_REQUEST = 'REGISTRATION_REQUEST';
 function registrationRequest() {
@@ -25,6 +26,7 @@ export function register(username, password) {
     })
     .then(res => {
       dispatch(registrationResponse(res));
+      history.push('/home');
     })
     .catch(err => {
       console.log(err);

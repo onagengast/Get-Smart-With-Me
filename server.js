@@ -23,12 +23,12 @@ app.use(session({secret: 'otto loves his mom'}));
 app.use(passport.initialize());
 app.use(passport.session());
 
-app.use('/', welcome);
-app.use('/', home);
-
 app.get('/*', (request, response) => {
   response.sendFile(__dirname + '/public/index.html'); // For React/Redux
 });
+
+app.use('/', welcome);
+app.use('/', home);
 
 app.listen(PORT, error => {
   error
