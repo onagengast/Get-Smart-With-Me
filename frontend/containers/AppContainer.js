@@ -3,8 +3,6 @@ import RegisterContainer from './RegisterContainer';
 import LoginContainer from './LoginContainer';
 import { Switch, Route } from 'react-router';
 import Home from '../components/Home';
-// import { connect } from 'react-redux';
-import { withRouter } from 'react-router';
 
 const AppContainer = () => {
   return (
@@ -16,7 +14,7 @@ const AppContainer = () => {
   );
 };
 
-export default withRouter(AppContainer);
+export default AppContainer;
 
 // AppContainer.propTypes = {
 //     name: PropTypes.string,

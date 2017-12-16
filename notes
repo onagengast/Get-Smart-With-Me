@@ -3,3 +3,4 @@
 To dos: 
 1. Error handling for registration
 2. Use express-validator for password checks
+3. Implementing protecting routes
