@@ -3,14 +3,10 @@ const express = require('express');
 const app = express();
 require('dotenv').config();
 const passport = require('passport');
-const LocalStrategy = require('passport-local').Strategy;
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 const session = require('express-session');
-const flash = require('connect-flash');
 
-
-const api = require('./backend/routes');
 const welcome = require('./backend/welcomeRouter');
 const home = require('./backend/homeRouter');
 
@@ -27,14 +23,23 @@ app.use(session({
 }));
 app.use(passport.initialize());
 app.use(passport.session());
-app.use(flash());
+
+// Routers
+app.use('/', welcome);
+
+// Checking if the user has a session cookie. This isn't working, but I had to move on. 
+app.use(function(req, res, next) {
+  if (req.isAuthenticated()) {
+    return next();
+  } else {
+    res.redirect('/#/login');
+  }
+});
+app.use('/', home);
 
 app.get('/*', (request, response) => {
   response.sendFile(__dirname + '/public/index.html'); // For React/Redux
 });
-
-app.use('/', welcome);
-app.use('/', home);
 
 app.listen(PORT, error => {
   error

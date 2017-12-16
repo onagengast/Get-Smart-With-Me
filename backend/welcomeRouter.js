@@ -33,17 +33,23 @@ passport.deserializeUser(function(id, done) {
 });
 
 router.get('/login', (req, res) => {
-  res.send('Successfully responsed to GET request to /login');
+  res.end();
 });
 
 router.post('/login', function(req, res) {
   passport.authenticate('local', function(err, user) {
     if (user) {
-      res.json({
-        userId: user.id,
-        username: user.username,
-        decks: user.decks,
-        error: false
+      req.login(user, function(err2) {
+        if (err2) {
+          res.json({error: true});
+        } else {
+          res.json({
+            userId: user.id,
+            username: user.username,
+            decks: user.decks,
+            error: false
+          });
+        }
       });
     } else {
       res.json({error: true});

@@ -3,7 +3,7 @@ import { render } from 'react-dom';
 import Root from './containers/Root';
 import { Provider } from 'react-redux';
 import configureStore from './store/configureStore';
-import { Router, Route } from 'react-router-dom';
+import { HashRouter, Route } from 'react-router-dom';
 
 const store = configureStore();
 console.log(store.getState());
@@ -20,9 +20,9 @@ import history from '../history';
 
 render(
     <Provider store={store}>
-      <Router history={history}>
+      <HashRouter history={history}>
         <Route path="/" component={Root}/>
-      </Router>
+      </HashRouter>
     </Provider>,
     document.getElementById('root')
 );
