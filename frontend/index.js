@@ -6,6 +6,7 @@ import configureStore from './store/configureStore';
 import { Router, Route } from 'react-router-dom';
 
 const store = configureStore();
+console.log(store.getState());
 import history from '../history';
 
 // import './assets/stylesheets/base.scss';

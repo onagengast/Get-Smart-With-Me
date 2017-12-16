@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
 import {
   register
-} from '../actions/registrationActions';
+} from '../actions/welcomeActions';
 // import Register from '../components/Register';
 
 class RegisterContainer extends React.Component {
@@ -41,6 +42,7 @@ class RegisterContainer extends React.Component {
   render() {
     return(
       <div>
+        <Link to="/login">Login</Link>
         <form onSubmit={() => this.handleSubmit(event)}>
           <label>
             Username:

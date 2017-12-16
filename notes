@@ -1,1 +1,5 @@
 ?? Why can't I use ES6 on the backend?? 
+
+To dos: 
+1. Error handling for registration
+2. Use express-validator for password checks

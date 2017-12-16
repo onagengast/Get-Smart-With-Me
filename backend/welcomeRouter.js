@@ -36,11 +36,27 @@ router.get('/login', (req, res) => {
   res.send('Successfully responsed to GET request to /login');
 });
 
-router.post('/login', passport.authenticate('local', {
-  successRedirect: '/home',
-  failureRedirect: '/login',
-  passReqToCallBack: true
-}));
+router.post('/login', function(req, res) {
+  passport.authenticate('local', function(err, user) {
+    if (user) {
+      res.json({
+        userId: user.id,
+        username: user.username,
+        decks: user.decks,
+        error: false
+      });
+    } else {
+      res.json({error: true});
+    }
+  })(req, res);
+});
+
+// if(err) return res.send('Error! It\'s not you. It\'s us. Please try again.');
+// const response = req.logIn(user, function(err2) {
+//   if (err2) return 'Error! It\'s not you. It\'s us. Please try again.';
+//   return user.id;
+// });
+// return res.send(response);
 
 router.post('/registration', (req, res) => {
   var newUser = new User({

@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux';
 import decks from './decksReducers';
-import registration from './registrationReducers';
+import welcome from './welcomeReducers';
 
 // function rootReducer(state = {name: 'Horizons'}, action) {
 //     switch (action.type) {
@@ -10,8 +10,8 @@ import registration from './registrationReducers';
 // }
 
 const rootReducer = combineReducers({
-  decks,
-  registration
+  welcome,
+  decks
 });
 
 export default rootReducer;
