@@ -17,7 +17,7 @@ state: {
         pile3: array, 
         pile4: array
       }, 
-      allIds: array
+      allIds: [{id, name}]
     }
   }
 }

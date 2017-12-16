@@ -7,14 +7,14 @@ const User = models.User;
 
 router.get('/home', (req, res) => {
   // Change the findByID method to use req.user.id
-  User.findById(req.query.id)
+  User.findById(req.body.userId)
   .populate('decks', 'name description')
   .exec((err, user) => {
     if (err) {
       console.log('Error! : ', err);
       res.send(err);
     } else {
-      res.send(user);
+      res.send(user.decks);
     }
   });
 });
@@ -55,9 +55,9 @@ router.post('/saveSession', (req, res) => {
 });
 
 router.post('/createNewDeck', (req, res) => {
-  const userId = req.query.userId;
-  const name = req.query.name;
-  const description = req.query.description;
+  const userId = req.body.userId;
+  const name = req.body.name;
+  const description = req.body.description;
   let deckId = null;
 
   var newDeck = new Deck({name: name, description: description});
@@ -71,7 +71,7 @@ router.post('/createNewDeck', (req, res) => {
     user.decks.push(deckId);
     return user.save();
   })
-  .then(user => res.send(user))
+  .then(user => res.send(user.decks))
   .catch(err => {
     console.log('Error! : ', err);
     res.send(err);

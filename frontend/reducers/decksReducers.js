@@ -44,8 +44,7 @@ export default function decks(
     case RECEIVE_DECKS: {
       return Object.assign({}, state, {
         isUpdating: false,
-        byId: action.byId,
-        allIds: action.allIds
+        decks: action.data.decks
       });
     }
     default:
