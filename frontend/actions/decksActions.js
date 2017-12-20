@@ -55,12 +55,15 @@ export function fetchDecks(userId) {
 export function createDeck(userId, name, description) {
   return function(dispatch) {
     dispatch(createDeckRequest());
-    axios.post('/createNewDeck', {
-      userId,
-      name,
-      description
+    return axios.post('/createNewDeck', {
+      userId: userId,
+      name: name,
+      description: description
     })
-    .then(res => dispatch(receiveDecks(res.data)))
+    .then(res => {
+      console.log(res.data);
+      dispatch(receiveDecks(res.data));
+    })
     .catch(err => console.log(err));
   };
 }

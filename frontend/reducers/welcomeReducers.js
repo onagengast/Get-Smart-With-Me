@@ -26,8 +26,8 @@ export default function welcome(
     case WELCOME_RESPONSE:
       return Object.assign({}, state, {
         isFetching: false,
-        userId: action.userId,
-        username: action.username,
+        userId: action.data.userId,
+        username: action.data.username,
         decks: action.data.decks
       });
     case LOGIN_FAILURE:

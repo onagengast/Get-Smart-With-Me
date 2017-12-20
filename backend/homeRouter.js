@@ -5,8 +5,8 @@ const Deck = models.Deck;
 const Card = models.Card;
 const User = models.User;
 
-router.get('/home', (req, res) => {
-  // Change the findByID method to use req.user.id
+router.post('/home', (req, res) => {
+  console.log(req.body);
   User.findById(req.body.userId)
   .populate('decks', 'name description')
   .exec((err, user) => {
@@ -14,6 +14,7 @@ router.get('/home', (req, res) => {
       console.log('Error! : ', err);
       res.send(err);
     } else {
+      console.log(user);
       res.send(user.decks);
     }
   });
@@ -55,6 +56,7 @@ router.post('/saveSession', (req, res) => {
 });
 
 router.post('/createNewDeck', (req, res) => {
+  console.log(req.body);
   const userId = req.body.userId;
   const name = req.body.name;
   const description = req.body.description;
@@ -71,6 +73,7 @@ router.post('/createNewDeck', (req, res) => {
     user.decks.push(deckId);
     return user.save();
   })
+  .then(user => user.populate('decks', 'name description').execPopulate())
   .then(user => res.send(user.decks))
   .catch(err => {
     console.log('Error! : ', err);

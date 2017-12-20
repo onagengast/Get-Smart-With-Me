@@ -10,7 +10,8 @@ export default function decks(
   state = {
     isUpdating: false,
     byId: {},
-    allIds: []
+    allIds: [],
+    decks: []
   }, action
 ) {
   switch(action.type) {
@@ -42,9 +43,10 @@ export default function decks(
         isUpdating: true
       });
     case RECEIVE_DECKS: {
+      console.log(action.data);
       return Object.assign({}, state, {
         isUpdating: false,
-        decks: action.data.decks
+        decks: action.decks
       });
     }
     default:

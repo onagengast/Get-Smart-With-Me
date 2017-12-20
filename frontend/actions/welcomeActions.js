@@ -59,6 +59,7 @@ export function login(username, password) {
       if (res.data.error) {
         dispatch(loginFailure());
       } else {
+        console.log(res);
         dispatch(welcomeResponse(res.data));
         history.push('/home');
       }
