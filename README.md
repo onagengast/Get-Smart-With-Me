@@ -1,91 +1,46 @@
-# React + Node Starter
-_for [Heroku](https://www.heroku.com/) deployment_
+# Get Smart With Me
+Digital Flashcards
 
-### OVERIVEW
-This is a simple starter to get you up and running for React projects. This is intended to provide:
+Technical stack: React, Redux, Express, PassportJS, and MongoDB 
 
-* a lightweight webpack config (for development and production)
-* some helpful tooling for development workflow
-* a similar setup to what you'll see in the wild
-* Heroku-ready deployment setup
+When I study flashcards, I have four piles: 
+1. Cards that I haven't viewed yet 
+2. Cards that I nailed 
+3. Cards that I got so-so 
+4. Cards for which I have no idea or for which I was completely wrong 
 
-### UP & RUNNING
-* Install dependencies
-`$ npm install` or `$ yarn`
+After each round, I collect piles 3 ("so-so" cards) and 4 ("totally off" cards) and work through this new stack. I repeat this until all cards make it to pile 2 ("nailed it" pile). 
 
-* Fire up a development server:
-* `$ npm run dev`
+This app enables users to study flashcards using this method. I've long relied on this method to study flashcards, and it has served me well. 
 
-Once the server is running, you can visit `http://localhost:8080/`
 
-### Linting
-_This assumes you have eslint and eslint-watch installed. If you don't, run the following:_
-```
-$ npm i -g eslint eslint-watch
-```
-or if you need permissions:
-```
-$ sudo npm i -g eslint eslint-watch
-```
 
-To run the linter once:
-```
-$ npm run lint
-```
+Build plan: 
+1. Construct backend and server
 
-To run the watch task:
-```
-$ npm run lint:watch
-```
+    a. Make a login/registration router (which I call "welcome") 
 
-### Testing
+    b. Configure PassportJS to handle authentication
 
-To run the tests:
-```
-$ npm test
-```
+    b. Make a home page router (which I call "home") 
 
-### Production Build
+    c. Make deck router 
 
-To build your production assets and run the server:
-```
-$ npm start
-```
+    d. Make study session router 
+  
+2. Construct frontend
 
-### CHANGELOG
-**v1.0.0**
-This app has been updated to use React v15.5 and Webpack 2.3! 🎉
+    a. Create actions, action creators, and reducers
 
-Major Changes:
-* Updates React and ReactDOM to v15.5
-* Updates Webpack to v2.3
-* Enables hot-reloading for local development
-* Adds initial test suite with Enzyme, Expect, and Mocha
+    b. Connect this to the backend 
 
-Minor Changes:
-* Updates all other dependencies to latest
-* Updates eslint rules
-* Updates npm scripts
-* Refactors server.js
-* Updates README
+    c. Create presentational components 
 
-**v.0.2.0**
-This app has been updated to use React v15 and Babel v6! I have also updated the file structure to reflect naming conventions you'll most likely see in other applications. If you'd like to go back to v.0.0.1 (which should've been named 0.1.0), you can find go back to [this commit](https://github.com/alanbsmith/react-node-example/commit/dd6d745c4b7066fd12104d5005b805afaf469d91).
-
-### DEPLOYING TO HEROKU
-This app is set up for deployment to Heroku!
-
-_This assumes you have already have a Heroku account and have the [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli) installed_
-```
-$ heroku login
-$ heroku create -a name-of-your-app
-$ git push heroku master
-$ heroku open
-```
-
-Heroku will follow the `build` command in your `package.json` and compile assets with `webpack.prod.config.js`. It runs the Express web server in `server.js`.
-
-If you're unfamiliar with Heroku deployment (or just need a refresher), they have a really great walkthrough [here](https://devcenter.heroku.com/articles/getting-started-with-nodejs#introduction).
-
-### REDUX STARTER
-If you're looking for a similar, minimalistic Redux starter, I would recommend Marc Garreau's [here](https://github.com/marcgarreau/redux-starter)
+    d. Create container components
+    
+3. Baseline functionality achieved: test, fix, and iterate 
+4. Refactor code 
+5. Style front-end components 
+6. Add functionality 
+  
+  - Some ideas: stats on indiviudal sessions to track progress, make decks sharable between users, add animations 

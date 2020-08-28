@@ -1,0 +1,35 @@
+// This is what my state looks like
+
+state: {
+  userId: string, 
+  username: string,
+  isFetching: bool,
+  selectedDeck: string,  
+  decks: {
+    isUpdating: bool
+    byId: {
+      id: {
+        id: num, 
+        isFetching: bool, 
+        allCards: array, 
+        pile1: array, 
+        pile2: array, 
+        pile3: array, 
+        pile4: array
+      }, 
+      allIds: [{id, name}]
+    }
+  }
+}
+
+// Extra (unneeded?) stuff 
+cards: {
+    byId: {
+      id: {
+        id: num, 
+        front: string, 
+        back: string
+      }
+    }, 
+    allIds: array
+  },

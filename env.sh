@@ -1,0 +1,1 @@
+export MONGODB_URI='mongodb://otto:password@ds133876.mlab.com:33876/get-smart-with-me'
